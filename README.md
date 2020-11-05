@@ -4,17 +4,21 @@
 
 #
 
-### [Docker](docker)
+### [Docker](docker/docker.md)
 
 #
 
-### [Comandos Linux](comandos-linux)
+### [Comandos Linux](comandos-linux/comandos-linux.md)
 
 #
 
-### [Google Cloud - GNS3 server](gce-gns3server)
+### [Instalação do GNS3 server na Google Cloud](gce-gns3server/gce-gns3server.md)
 
 #
 
-### [Google Cloud - Pub/Sub & Core IoT](gce-pubsub-coreiot)
+### [Configuração do GNS3 server](config-gns3server/config-gns3server.md)
+
+#
+
+### [Google Cloud Pub/Sub & Core IoT](gce-pubsub-coreiot/gce-pubsub-coreiot.md)
 
