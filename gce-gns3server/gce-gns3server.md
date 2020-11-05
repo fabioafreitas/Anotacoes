@@ -91,21 +91,21 @@ De dentro da página da [Google Compute Engine](https://console.cloud.google.com
 ![a](ssh-1.png)
 4. Aguarde o console carregar
 ![a](ssh-2.png)
-5. Dê o comando e aperte enter
+5. Execute os comandos abaixo
 ```
 sudo su
 ```
-6. Dê o comando e aperte enter
+6. Execute os comandos abaixo
 ```
 nano /etc/ssh/sshd_config
 ```
 7. Navegue neste arquivo com as setas. Retique o "#" do campo "PermitRootLogin" e substitua o texto "prohibit-password" por "yes". No campo "PasswordAuthentication" substitua o "no" por "yes". Para salvar, selecione CTRL+O e aperte enter. Para fechar, selecione CTRL+C.
 ![a](ssh-3.png)
-8. Dê o comando e aperte enter
+8. Execute os comandos abaixo
 ```
 service sshd restart
 ```
-9. Dê o comando e aperte enter
+9. Execute os comandos abaixo
 ```
 passwd root
 ```
@@ -115,34 +115,37 @@ passwd root
 
 1. Abra um terminal em sua máquina
 2. Substitua o campo "[ip-ou-dominio]" com o **ip** da sua vm ou seu **domínio do duckdns**.
-3. Dê o comando e aperte enter
+3. Execute os comandos abaixo
 ```
 ssh root@[ip-ou-dominio]
 ```
 4. Digite a senha configurada para o SSH
 ![a](acesso-ssh-1.png)
+
 5. Acesso realizado com sucesso
 ![a](acesso-ssh-2.png)
 
 ## Instalação do GNS3 server 2.2.3
 
+Alguns comandos abaixo são demorados, aguarde sua execução completa
+
 1. Acesse sua VM num terminal (Passo a passo anterior)
-2. Atualizando o gerenciados de pacotes do linux. Dê o comando e aperte enter
+2. Atualizando o gerenciados de pacotes do linux. Execute os comandos abaixo
 ```
 apt-get update -y
 apt-get upgrade -y
 apt update -y 
 apt upgrade -y
 ```
-3. Baixando as dependencias dos arquivos para o servidor gns3. Dê o comando e aperte enter
+3. Baixando as dependencias dos arquivos para o servidor gns3. Execute os comandos abaixo
 ```
 apt-get install build-essential git unzip libpthread-stubs0-dev libpcap-dev qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker cmake libelf-dev python3-setuptools python3-aiohttp python3-psutil python3-jsonschema python3.6-dev python3-pip -y
 ```
-4. Baixando as dependencias dos arquivos para o servidor gns3. Dê o comando e aperte enter
+4. Baixando as dependencias dos arquivos para o servidor gns3. Execute os comandos abaixo
 ```
 pip3 install aiohttp multidict==4.5
 ```
-5. Baixando e instalando o ubridge. Dê o comando e aperte enter
+5. Baixando e instalando o ubridge. Execute os comandos abaixo
 ```
 cd ~
 git clone https://github.com/GNS3/ubridge.git
@@ -150,7 +153,7 @@ cd ubridge
 make 
 sudo make install
 ```
-6. Baixando e instalando o dynamips. Dê o comando e aperte enter
+6. Baixando e instalando o dynamips. Execute os comandos abaixo
 ```
 cd ~
 git clone git://github.com/GNS3/dynamips.git
@@ -160,7 +163,7 @@ cd build
 cmake .. -DDYNAMIPS_CODE=stable
 sudo make install
 ```
-7. Baixando e instalando servidor gns3 2.2.3. Dê o comando e aperte enter
+7. Baixando e instalando servidor gns3 2.2.3. Execute os comandos abaixo
 ```
 cd ~
 wget https://github.com/GNS3/gns3-server/archive/v2.2.3.tar.gz
@@ -172,9 +175,46 @@ sudo python3 setup.py install
 8. Se após esses comandos este log aparecer no terminal, então a instalação foi bem sucedida
 ![a](instalacao-1.png)
 
-**Observação 1**: Alguns comandos abaixo são demorados, aguarde sua execução completa
 
-**Observação 2**: Caso a instalação do servidor falhe, verifique se os comandos foram dados corretamente. Verifique se as dependências do python3 correspondem as indicadas abaixo, se não, então instale-as.
+
+9. Instalação do docker
+```
+cd ~
+sudo apt install docker.io -y
+sudo systemctl enable docker
+```
+10. Criação do usuário gns3
+```
+sudo adduser gns3
+```
+11. Digite a senha da sua VM
+12. Confirme a senha da sua VM
+13. Deixe as demais opções em branco, apenas pressione enter
+14. Criação dos usuários **gns3 kvm** e **gns3 docker**
+```
+sudo adduser gns3 kvm
+sudo adduser gns3 docker
+```
+15. Execute os comandos abaixo
+```
+sudo cp ~/gns3-server-2.2.3/init/gns3.service.systemd /lib/systemd/system/gns3.service
+```
+16. Permitindo o serviço do servidor iniciar quando a VM iniciar
+```
+sudo systemctl enable gns3
+```
+17. Reiniciando o serviço do servidor
+```
+sudo systemctl restart gns3
+```
+18. Checando o status do serviço. Se o log aparecer como na imagem abaixo, então o servidor está pronto para ser utilizado numa interface
+
+```
+sudo systemctl status gns3
+```
+![a](fim.png)
+
+**Observação**: Caso a instalação do servidor falhe, verifique se os comandos foram dados corretamente. Verifique se as dependências do python3 correspondem as indicadas abaixo, se não, então instale-as.
 ```
 aiofiles==0.4.0
 aiohttp==3.6.2
@@ -243,4 +283,3 @@ urllib3==1.22
 yarl==1.3.0
 zope.interface==4.3.2
 ```
-
