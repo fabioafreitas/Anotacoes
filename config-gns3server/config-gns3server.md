@@ -68,7 +68,7 @@ rm *.bin
     > Para buscar imagens acesse a [conta do gns3 no docker hub](https://hub.docker.com/search?q=gns3&type=image) ou o [appliances do marketplace do gns3](https://gns3.com/marketplace/appliances)
     > - "alpine" : Imagem do alpine linux, versão muito leve usada para simular computadores de usuários de redes locais;
     > - "gns3/python-go-perl-php" : Imagem com algumas linguagens de programação instaladas;
-    > - "gns3/dhcp" : Imagem com **dnsmasq**, ferramenta para configuração de servidores dns;
+    > - "adosztal/dns" : Imagem com **dnsmasq**, ferramenta para configuração de servidores dns;
     > - "gns3/kalilinux" : Imagem com kali linux com **iptables** e **ssh** já instalados ;
 ![a](docker-1.png)
 4. Clique Next e Finish para o resto das configurações
