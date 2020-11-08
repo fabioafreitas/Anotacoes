@@ -4,7 +4,7 @@
 
 #
 
-### [Docker](docker/docker.md)
+### [Comandos Docker](docker/docker.md)
 
 #
 
@@ -12,11 +12,7 @@
 
 #
 
-### [Instalação do GNS3 server na Google Cloud](gce-gns3server/gce-gns3server.md)
-
-#
-
-### [Configuração do GNS3 server](config-gns3server/config-gns3server.md)
+### [Servidor GNS3 Projeto de Redes](projeto-redes/projeto-redes.md)
 
 #
 
