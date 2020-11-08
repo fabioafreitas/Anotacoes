@@ -348,7 +348,7 @@ rm *.bin
 
 > Para buscar imagens acesse a [conta do gns3 no docker hub](https://hub.docker.com/search?q=gns3&type=image) ou o [appliances do marketplace do gns3](https://gns3.com/marketplace/appliances)
 
-<style>
+<style hidden>
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
