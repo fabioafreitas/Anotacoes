@@ -378,6 +378,10 @@ table th {
         <th>Descrição</th>
     </tr>
     <tr>
+        <td>fabioafreitas/ubuntu_python3:latest</td>
+        <td>Imagem do python3 com conector mysql, flask, e flask_cors</td>
+    </tr>
+    <tr>
         <td>fabioafreitas/ubuntu_network_tools:latest</td>
         <td>Imagem com nmap, client ssh, server ssh, net-tools, iptables, ufw, etc instalados</td>
     </tr>
