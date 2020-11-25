@@ -6,12 +6,18 @@ Execute os comandos abaixo no gcloud, com sua conta e projetos já configurados.
 
 Criar disco
 ```
-gcloud compute disks create disk-ubuntu-1804-lts --image-project ubuntu-os-cloud --image-family ubuntu-1804-lts --zone southamerica-east1-b
+gcloud compute disks create disk-ubuntu-1804-lts \
+  --image-project ubuntu-os-cloud \
+  --image-family ubuntu-1804-lts \
+  --zone southamerica-east1-b
 ```
 
 Usando disco anterior para criar novo disco com kvm
 ```
-gcloud compute images create kvm-ubuntu-1804-lts --source-disk disk-ubuntu-1804-lts --source-disk-zone southamerica-east1-b --licenses "https://compute.googleapis.com/compute/v1/projects/vm-options/global/licenses/enable-vmx"
+gcloud compute images create kvm-ubuntu-1804-lts \
+  --source-disk disk-ubuntu-1804-lts \
+  --source-disk-zone southamerica-east1-b \
+  --licenses "https://compute.googleapis.com/compute/v1/projects/vm-options/global/licenses/enable-vmx"
 ```
 
 ## Criar VM
@@ -139,7 +145,10 @@ apt upgrade -y
 ```
 3. Baixando as dependencias dos arquivos para o servidor gns3. Execute os comandos abaixo
 ```
-apt-get install build-essential git unzip libpthread-stubs0-dev libpcap-dev qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker cmake libelf-dev python3-setuptools python3-aiohttp python3-psutil python3-jsonschema python3.6-dev python3-pip -y
+apt-get install build-essential git unzip libpthread-stubs0-dev libpcap-dev \
+  qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker cmake libelf-dev \
+  python3-setuptools python3-aiohttp python3-psutil python3-jsonschema \
+  python3.6-dev python3-pip -y
 ```
 4. Baixando as dependencias dos arquivos para o servidor gns3. Execute os comandos abaixo
 ```
