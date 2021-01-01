@@ -305,7 +305,7 @@ Abra o GNS3. De vez em quando ele indica novas versões da interface e dá a sug
 ![a](setup-host-1.png)
 2. Clique em Preferences
 ![a](setup-host-2.png)
-3. Clique em Server e desabilite a checkbox "Enable Locla Server"
+3. Clique em Server e desabilite a checkbox "Enable Local Server"
 ![a](setup-host-3.png)
 4. No campo host, digite seu domínio do duckdns.
 ![a](setup-host-4.png)
@@ -357,85 +357,20 @@ rm *.bin
 
 > Para buscar imagens acesse a [conta do gns3 no docker hub](https://hub.docker.com/search?q=gns3&type=image) ou o [appliances do marketplace do gns3](https://gns3.com/marketplace/appliances)
 
-<style hidden>
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table td, table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-table tr:nth-child(even){background-color: #f2f2f2;}
-
-table tr:hover {background-color: #ddd;}
-
-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #7F7F7F;
-  color: white;
-}
-</style>
-<table>
-    <tr>
-        <th>Nome da Imagem</th>
-        <th>Descrição</th>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_python3:latest</td>
-        <td>Imagem do python3 com conector mysql, flask, e flask_cors</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_network_tools:latest</td>
-        <td>Imagem com nmap, client ssh, server ssh, net-tools, iptables, ufw, etc instalados</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_mysql:latest</td>
-        <td>Imagem com o banco de dados relacional mysql instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_mongodb:latest</td>
-        <td>Imagem com o banco de dados não relacional mongodb instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_dnsmasq:latest</td>
-        <td>Imagem com o servidor dns dnsmasq instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_bind9:latest</td>
-        <td>Imagem com o servidor dns bind9 instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/ubuntu_apache2:latest</td>
-        <td>Imagem com o servidor apache2 instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/alpine_python3:latest</td>
-        <td>Imagem com python3 instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/alpine_php7:latest</td>
-        <td>Imagem com php7 instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/alpine_nodejs:latest</td>
-        <td>Imagem com nodejs 12 instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/alpine_java8:latest</td>
-        <td>Imagem com java 8 instalado</td>
-    </tr>
-    <tr>
-        <td>fabioafreitas/alpine_c_cpp:latest</td>
-        <td>Imagem com c e c++ instalados</td>
-    </tr>
-</table>
-
+| Nome da Imagem  | Descrição  |
+|---|---|
+| fabioafreitas/ubuntu_python3:latest  | Imagem do python3 com conector mysql, flask, flask_cors e conector mysql |
+| fabioafreitas/ubuntu_network_tools:latest  | Imagem com nmap, client ssh, server ssh, net-tools, iptables, ufw, etc instalados  |
+| fabioafreitas/ubuntu_mysql:latest  | Imagem com o banco de dados relacional mysql instalado  |
+| fabioafreitas/ubuntu_mongodb:latest  | Imagem com o banco de dados não relacional mongodb instalado  |
+| fabioafreitas/ubuntu_dnsmasq:latest  | Imagem com o servidor dns dnsmasq instalado  |
+| fabioafreitas/ubuntu_bind9:latest  | Imagem com o servidor dns bind9 instalado  |
+| fabioafreitas/ubuntu_apache2:latest  | Imagem com o servidor apache2 instalado  |
+| fabioafreitas/alpine_python3:latest  | Imagem com python3 instalado  |
+| fabioafreitas/alpine_php7:latest  | Imagem com php7 instalado  |
+| fabioafreitas/alpine_nodejs:latest  | Imagem com nodejs 12 instalado  |
+| fabioafreitas/alpine_java8:latest  | Imagem com java 8 instalado  |
+| fabioafreitas/alpine_c_cpp:latest  | Imagem com c e c++ instalados  |
 
 1. Dentro do GNS3, clique em **Edit > Preferences > Docker > Docker containers**
 2. Clique em New
