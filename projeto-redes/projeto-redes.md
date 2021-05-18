@@ -148,13 +148,9 @@ apt upgrade -y
 apt-get install build-essential git unzip libpthread-stubs0-dev libpcap-dev \
   qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker cmake libelf-dev \
   python3-setuptools python3-aiohttp python3-psutil python3-jsonschema \
-  python3.6-dev python3-pip xvfb x11vnc net-rools -y
+  python3.6-dev python3-pip xvfb x11vnc net-tools -y
 ```
-4. Baixando as dependencias dos arquivos para o servidor gns3. Execute os comandos abaixo
-```
-pip3 install aiohttp multidict==4.5
-```
-5. Baixando e instalando o ubridge. Execute os comandos abaixo
+4. Baixando e instalando o ubridge. Execute os comandos abaixo
 ```
 cd ~
 git clone https://github.com/GNS3/ubridge.git
@@ -162,7 +158,7 @@ cd ubridge
 make 
 sudo make install
 ```
-6. Baixando e instalando o dynamips. Execute os comandos abaixo
+5. Baixando e instalando o dynamips. Execute os comandos abaixo
 ```
 cd ~
 git clone git://github.com/GNS3/dynamips.git
@@ -172,13 +168,20 @@ cd build
 cmake .. -DDYNAMIPS_CODE=stable
 sudo make install
 ```
-7. Baixando e instalando servidor gns3 2.2.3. Execute os comandos abaixo
+6. Baixando os arquivos servidor gns3 2.2.3. Execute os comandos abaixo (Caso queira uma versão diferente do servidor substitua o 2.2.3 em todos os comandos abaixo pela versão desejada. Versões disponíveis podem ser encontradas no [repositorio do gns3-server](https://github.com/GNS3/gns3-server/releases))
 ```
 cd ~
 wget https://github.com/GNS3/gns3-server/archive/v2.2.3.tar.gz
 tar xvzf v2.2.3.tar.gz
 rm v2.2.3.tar.gz
 cd gns3-server-2.2.3/
+
+```
+7. Baixando as dependencias do python3 e instalando o servidor. Execute os comandos abaixo
+```
+cd ~
+cd gns3-server-2.2.3/
+sudo pip3 install -r requirements.txt
 sudo python3 setup.py install
 ```
 8. Se após esses comandos este log aparecer no terminal, então a instalação foi bem sucedida
@@ -204,7 +207,7 @@ sudo adduser gns3
 sudo adduser gns3 kvm
 sudo adduser gns3 docker
 ```
-15. Execute os comandos abaixo
+15. Execute os comandos abaixo (Novamente, se a versão do servidor instalada não for a 2.2.3, substitua a versão correta no comando abaixo)
 ```
 sudo cp ~/gns3-server-2.2.3/init/gns3.service.systemd /lib/systemd/system/gns3.service
 ```
@@ -222,76 +225,6 @@ sudo systemctl restart gns3
 sudo systemctl status gns3
 ```
 ![a](fim.png)
-
-**Observação**: Caso a instalação do servidor falhe, verifique se os comandos foram dados corretamente. Verifique se as dependências do python3 correspondem as indicadas abaixo, se não, então instale-as.
-```
-aiofiles==0.4.0
-aiohttp==3.6.2
-aiohttp-cors==0.7.0
-asn1crypto==0.24.0
-async-generator==1.10
-async-timeout==3.0.1
-attrs==17.4.0
-Automat==0.6.0
-blinker==1.4
-certifi==2018.1.18
-chardet==3.0.4
-click==6.7
-cloud-init==20.3
-colorama==0.3.7
-command-not-found==0.3
-configobj==5.0.6
-constantly==15.1.0
-cryptography==2.1.4
-distro==1.5.0
-distro-info===0.18ubuntu0.18.04.1
-gns3-server==2.2.3
-google-compute-engine==20190801.0
-httplib2==0.9.2
-hyperlink==17.3.1
-idna==2.6
-idna-ssl==1.1.0
-incremental==16.10.1
-Jinja2==2.10
-jsonpatch==1.16
-jsonpointer==1.10
-jsonschema==2.6.0
-keyring==10.6.0
-keyrings.alt==3.0
-language-selector==0.1
-MarkupSafe==1.0
-multidict==4.5.0
-netifaces==0.10.4
-oauthlib==2.0.6
-PAM==0.4.2
-psutil==5.6.3
-pyasn1==0.4.2
-pyasn1-modules==0.2.1
-pycrypto==2.6.1
-pygobject==3.26.1
-PyJWT==1.5.3
-pyOpenSSL==17.5.0
-pyserial==3.4
-python-apt==1.6.5+ubuntu0.3
-python-debian==0.1.32
-pyxdg==0.25
-PyYAML==3.12
-raven==6.10.0
-requests==2.18.4
-requests-unixsocket==0.1.5
-SecretStorage==2.3.1
-service-identity==16.0.0
-six==1.11.0
-ssh-import-id==5.7
-systemd-python==234
-Twisted==17.9.0
-typing-extensions==3.7.4.3
-ufw==0.36
-unattended-upgrades==0.1
-urllib3==1.22
-yarl==1.3.0
-zope.interface==4.3.2
-```
 
 ## Baixando o GNS3 GUI
 
