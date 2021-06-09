@@ -304,6 +304,7 @@ rm *.bin
 | fabioafreitas/alpine_nodejs:latest  | Imagem com nodejs 12 instalado  |
 | fabioafreitas/alpine_java8:latest  | Imagem com java 8 instalado  |
 | fabioafreitas/alpine_c_cpp:latest  | Imagem com c e c++ instalados  |
+| gns3/webterm:latest | Imagem do navegador firefox |
 
 1. Dentro do GNS3, clique em **Edit > Preferences > Docker > Docker containers**
 2. Clique em New
