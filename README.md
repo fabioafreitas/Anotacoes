@@ -26,3 +26,7 @@
 
 ### [SIM800L Tutorial](sim800l-commands/sim800l-commands.md)
 
+#
+
+### [fritizing parts](fritizing-parts/fritizing-parts.md)
+
