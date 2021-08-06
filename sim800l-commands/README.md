@@ -23,7 +23,13 @@ AT+HTTPREAD
 ```
 AT+CMGF=1
 
-AT+CMGS="[mensagem][symbol 28 os ascii table (CTLL+Z)]"
+AT+CMGS="+5581998309134"
+
+> [mensagem][ascii symbol 26 (0x1A)]
+
+exemplo: TESTE SIM800L V2
+
+> 54 45 53 54 45 20 53 49 4d 38 30 30 4c 20 56 32 1a
 ```
 
 ## Mais Informações
