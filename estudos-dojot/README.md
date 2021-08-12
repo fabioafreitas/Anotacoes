@@ -14,8 +14,10 @@ docker-compose up -d
 
 #desligar
 docker-compose down -v
-```
 
+#status
+docker ps -a
+```
 
 
 
