@@ -1,6 +1,6 @@
 # Let's Encrypt SSL
 
-Tutorial de como configurar um certificado SSL no [Let's Encrypt](https://letsencrypt.org/) utilizando o [Certbot](https://certbot.eff.org/) numa webserver Apache2.
+Tutorial de como configurar um certificado SSL no [Let's Encrypt](https://letsencrypt.org/) utilizando o [Certbot](https://certbot.eff.org/).
 
 # 
 
@@ -12,52 +12,55 @@ Tutorial de como configurar um certificado SSL no [Let's Encrypt](https://letsen
 
 #
 
-## Instalando apache
+## Apache2
+
+### Instalando servidor
 
 Utilizei uma VM ubuntu 18.04 LTS, na google cloud.
 
 1. Atualizar apt e instalar apache
-```
-sudo apt -y uptade
-sudo apt install -y apache2
-```
+    ```
+    sudo apt -y uptade
+    sudo apt install -y apache2
+    ```
 
 2. Indicar subdomínio a ser utilizado no webserver
-```
-sudo nano /etc/apache2/sites-available/000-default.conf
-```
-```
-<VirtualHost *:80>
-    ServerAdmin webmaster@localhost
-    DocumentRoot /var/www/html
-    ServerName fabiotest.online
-    ServerAlias www.fabiotest.online
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
+    ```
+    sudo nano /etc/apache2/sites-available/000-default.conf
+    ```
+
+    Colar o texto abaixo no arquivo
+    ```
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+        ServerName fabiotest.online
+        ServerAlias www.fabiotest.online
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+    ```
 
 3. Habilitar o arquivo de configurações como um site
-```
-sudo a2ensite 000-default.conf
-```
-# 
+    ```
+    sudo a2ensite 000-default.conf
+    ```
 
-## Instalando certificado
+### Instalando certificado
 
 1. Adicionar repositório do certbot
-```
-sudo add-apt-repository ppa:certbot/certbot
-```
+    ```
+    sudo add-apt-repository ppa:certbot/certbot
+    ```
 
 2. Instalar certbot
-```
-sudo apt install python-certbot-apache
-```
+    ```
+    sudo apt install python-certbot-apache
+    ```
 
 3. Criar certificado para subdomínio
-```
-sudo certbot --apache -d fabiotest.online
-```
+    ```
+    sudo certbot --apache -d fabiotest.online -d www.fabiotest.online
+    ```
 
 4. Entrar no website e ver se o ssl funcionou
