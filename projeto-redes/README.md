@@ -147,7 +147,7 @@ apt upgrade -y
 ```
 apt-get install build-essential git unzip libpthread-stubs0-dev libpcap-dev \
   qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker cmake libelf-dev \
-  python3-setuptools python3-aiohttp python3-psutil python3-jsonschema \
+  python3-setuptools python3-psutil python3-jsonschema \
   python3.6-dev python3-pip xvfb x11vnc net-tools -y
 ```
 4. Baixando e instalando o ubridge. Execute os comandos abaixo
