@@ -14,18 +14,16 @@ sudo apt install net-tools aircrack-ng reaver
 ```
 
 Bettercap
+
+### Instalar o GO
+
+Seguir tutorial desse [link](https://tzusec.com/how-to-install-golang-in-kali-linux/). Nele, na etapa de colar as variáveis de ambiente, ao invés de colar no ~/.bashrc, colar no ~/.zshrc. Depois esecutar **source ~/.zshrc**
+
+### Instalar bettercap
 ```
-# Instalando Go
-apt install golang
-
-# Instalando dependencias bettercap 
-sudo apt install build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev 
-
-#Instalando Bettercap
 go get github.com/bettercap/bettercap
-cd $GOPATH/src/github.com/bettercap/bettercap
-make build
-sudo make install
+# path do executável: $GOPATH/bin/bettercap
+# ele já estará adicionado ao path, basta executar o bettercap
 ```
 
 
