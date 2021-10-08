@@ -1,6 +1,11 @@
 
 # [Ethical Hacking](https://www.udemy.com/course/learn-ethical-hacking-from-scratch)
 
+Mudar o layout do teclado do kali para pt-br
+```
+setxkbmap -model abnt2 -layout br
+```
+
 # Requirements
 
 Aircrack-ng e Reaver
