@@ -61,14 +61,7 @@ Utilizando esta função podemos relacionar as unidades do ADS com a relação d
 
 Calculando o a equação da reta (function slope), podemos relacionar a unidades do ADS com valor de pH do sinal do sensor.
 
-$
-det\left(\begin{array}{ccc} 
-16106.2 & 4  & 1\\
-10773.0 & 10 & 1\\
-x & y & 1\\
-\end{array}\right) = 0
-$ 
-
-$f(x) = 22.1199 - 0.00112503 x$
+<img src="https://render.githubusercontent.com/render/math?math=det\left(\begin{array}{ccc} 16106.2 & 4  & 1\\10773.0 & 10 & 1\\x & y & 1\\\end{array}\right) = 0">
+<img src="https://render.githubusercontent.com/render/math?math=f(x) = 22.1199 - 0.00112503 x">
 
 Esta função recebe as unidades do ADS e retorna o valor de pH lido pelo sensor.
