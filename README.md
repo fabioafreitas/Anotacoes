@@ -2,7 +2,7 @@
 
 > anotações explicando o passo a passo de muitas funcionalidades e comandos aprendidos
 
-- ## [ADS1115](ads11115/README.md)
+- ## [ADS1115](ads1115/README.md)
 - ## [Docker](docker-estudos/README.md)
 - ## [Dojot](estudos-dojot/README.md)
 - ## [Ethical Hacking](ethical-hacking/README.md)
