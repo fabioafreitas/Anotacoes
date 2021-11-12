@@ -47,6 +47,7 @@ Durante pesquisas, observei que no arduino UNO as abaixo tensões se relacionava
 
 Considerando que o sensor de pH dá respostas de 0v a 5v, a tensão de referência utilizada no ADS foi a de $\pm 6.144$  V. Sabendo que o ADS codifica em complemento A2, então 15 bits serão reservados para valores positivos. Portanto, temos que o menor valor positivo é $0$ e o maior $2^{15}-1 = 32767$. Desta forma, aplicando a regra de três nesta relação, temos que:
 
+<img src="https://render.githubusercontent.com/render/math?math=6.144\ \text{volts}\ = 32767\ \text{units}">
 $6.144\ \text{volts}\ = 32767\ \text{units}  $
 $x\ \text{volts}\ = f(x)\ \text{units}  $
 $f(x) = \frac{32767x}{6.144}$
