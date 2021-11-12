@@ -47,9 +47,9 @@ Durante pesquisas, observei que no arduino UNO as abaixo tensões se relacionava
 
 Considerando que o sensor de pH dá respostas de 0v a 5v, a tensão de referência utilizada no ADS foi a de $\pm 6.144$  V. Sabendo que o ADS codifica em complemento A2, então 15 bits serão reservados para valores positivos. Portanto, temos que o menor valor positivo é $0$ e o maior $2^{15}-1 = 32767$. Desta forma, aplicando a regra de três nesta relação, temos que:
 
-$$6.144\ \text{volts}\ = 32767\ \text{units}  $$
-$$x\ \text{volts}\ = f(x)\ \text{units}  $$
-$$f(x) = \frac{32767x}{6.144}$$
+$6.144\ \text{volts}\ = 32767\ \text{units}  $
+$x\ \text{volts}\ = f(x)\ \text{units}  $
+$f(x) = \frac{32767x}{6.144}$
 
 Utilizando esta função podemos relacionar as unidades do ADS com a relação de tensão e pH, da seção anterior.
 
@@ -61,14 +61,14 @@ Utilizando esta função podemos relacionar as unidades do ADS com a relação d
 
 Calculando o a equação da reta (function slope), podemos relacionar a unidades do ADS com valor de pH do sinal do sensor.
 
-$$
+$
 det\left(\begin{array}{ccc} 
 16106.2 & 4  & 1\\
 10773.0 & 10 & 1\\
 x & y & 1\\
 \end{array}\right) = 0
-$$ 
+$ 
 
-$$f(x) = 22.1199 - 0.00112503 x$$
+$f(x) = 22.1199 - 0.00112503 x$
 
 Esta função recebe as unidades do ADS e retorna o valor de pH lido pelo sensor.
