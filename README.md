@@ -11,6 +11,7 @@
 - ## [Linux](comandos-linux/README.md)
 - ## [Mobile Development](mobile-development/README.md)
 - ## [OpenVPN](OpenVPN-Configuracao/README.md)
+- ## [Python Dev](python-dev/README.md)
 - ## [Servidor GNS3](projeto-redes/README.md)
 - ## [SIM800L](sim800l-commands/README.md)
 - ## [SSL Certificate](lets-encrypt-ssl/README.md)
