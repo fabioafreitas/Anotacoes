@@ -64,3 +64,72 @@ Utilizei uma VM ubuntu 18.04 LTS, na google cloud.
     ```
 
 4. Entrar no website e ver se o ssl funcionou
+
+#
+
+## Nginx Proxy Reverso
+
+Para fazer o nginx ser a interface https de um aplicativo local do servidor sem http pode-se fazer um proxy reverso, onde todo o tráfego do nginx é redirecionado. O próprio nginx gerencia o https.
+
+### Instalando Nginx
+
+```
+apt update -y
+apt install nginx -y
+```
+
+### Configurações proxy reverso
+
+1. desabilitando link simbolico da configuração padrão do nginx
+    ```
+    unlink /etc/nginx/sites-enabled/default
+    ```
+
+2. criando novo arquivo de configurações
+    ```
+    cd /etc/nginx/sites-available
+    nano reverse-proxy.conf
+    ```
+
+3. comandos a colar. substitua [DOMAIN_NAME] pelo nome seu domínio e [LOCALHOST_PORT] pela porta do app localhost que deseja redirecionar o tráfego.
+    ```
+    server {
+        listen 80;
+        listen [::]:80;
+
+        server_name [DOMAIN_NAME];
+
+        access_log /var/log/nginx/reverse-access.log;
+        error_log /var/log/nginx/reverse-error.log;
+
+        location / {
+            proxy_pass http://127.0.0.1:[LOCALHOST_PORT];
+        }
+    }
+    ```
+
+4. criar link simbolico com novo arquivo
+    ```
+    ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf
+    ```
+
+### Instalando SSL
+
+1. Baixando o certbot para nginx
+    ```
+    apt install certbot python3-certbot-nginx
+    ```
+
+2. solicitando um certificado ao let's encrypt
+    ```
+    certbot --nginx -d [DOMAIN_NAME]
+    ```
+
+3. leia e preencha as informações necessárias durante o processo do passo anterior. Ao fim seu certificado será gerado.
+
+4. testar conexão com o server para ver se há SSL
+
+
+
+
+
