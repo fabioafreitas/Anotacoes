@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <script type="text/javascript">
+        function WebSocketAPIExample() {
+
+            //jwt
+            var token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZW5hbnRAdGhpbmdzYm9hcmQub3JnIiwic2NvcGVzIjpbIlRFTkFOVF9BRE1JTiJdLCJ1c2VySWQiOiIzNWY0MDk0MC02ZTk5LTExZWMtOTBlMi1mN2U1ZDcyZjc2Y2MiLCJlbmFibGVkIjp0cnVlLCJpc1B1YmxpYyI6ZmFsc2UsInRlbmFudElkIjoiMzU2Yjc4NTAtNmU5OS0xMWVjLTkwZTItZjdlNWQ3MmY3NmNjIiwiY3VzdG9tZXJJZCI6IjEzODE0MDAwLTFkZDItMTFiMi04MDgwLTgwODA4MDgwODA4MCIsImlzcyI6InRoaW5nc2JvYXJkLmlvIiwiaWF0IjoxNjQxNTE4OTg1LCJleHAiOjE2NDE1Mjc5ODV9.gLDsUThCSzmTRdGn-U0HDdvpjipw4x8fVHSflBf7AtMZAm4OrNMOxkU9oq00HqxQJcgkfml3C12HhwwvYRd-SA";
+            
+            //device-id
+            var entityId = "ad7b0610-6ef0-11ec-8d73-4f02d9360166"; 
+
+            //uri
+            var webSocket = new WebSocket("wss://thingsboard.smartrural.com.br/api/ws/plugins/telemetry?token=" + token);
+
+            if (entityId === "YOUR_DEVICE_ID") {
+                console.log("Invalid device id!");
+                webSocket.close();
+            }
+
+            if (token === "YOUR_JWT_TOKEN") {
+                console.log("Invalid JWT token!");
+                webSocket.close();
+            }
+
+            webSocket.onopen = function () {
+                var object = {
+                    tsSubCmds: [
+                        {
+                            entityType: "DEVICE",
+                            entityId: entityId,
+                            scope: "LATEST_TELEMETRY",
+                            cmdId: 10
+                        }
+                    ],
+                    historyCmds: [],
+                    attrSubCmds: []
+                };
+                var data = JSON.stringify(object);
+                webSocket.send(data);
+                console.log("Message is sent: " + data);
+            };
+
+            webSocket.onmessage = function (event) {
+                var received_msg = event.data;
+                console.log("Message is received: " + received_msg);
+            };
+
+            webSocket.onclose = function (event) {
+                console.log("Connection is closed!");
+            };
+        }
+    </script>
+
+</head>
+<body>
+
+<div id="sse">
+    <a href="javascript:WebSocketAPIExample()">Run WebSocket</a>
+</div>
+
+</body>
+</html>

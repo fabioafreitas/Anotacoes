@@ -28,3 +28,5 @@ lemetry" -u "$ACCESS_TOKEN" -m "{"temperature":42}"
 ```
 
 ## Websockets Telemetry
+
+ver o arquivo [thingsboard_websockets.html](./thingsboard_websockets.html)
