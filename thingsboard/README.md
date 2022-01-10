@@ -53,24 +53,24 @@ Links importantes que pesquisei para aprender este conceito:
 
 Este exemplo mostra a chamada da rede neural e o salvamento da predição do OD no device que recebeu dados de ph e temperatura. A imagem abaixo mostra o esquema utilizado neste exemplo:
 
-![](rule_chain_image.png)
+![](./rule_chain_image.png)
 
 Esta é a root rule chain padrão que vem instalado no thingsboard inicialmente. Eu modifiquei a parte com os números em vermelho, para tratar a chamada da api da rede neural. O bloco **message type switch** direciona diferentes os diferentes eventos de entrada do thingsboard, cabe ao desenvolvedor usar os eventos nomeados nas setinhas para programar o comportamento desejado. Este exemplo funciona assim:
 
 1. Chega uma nova mensagem de um device no server, que é encaminhado a seta 1, de **Post Telemetry**, através do **message type switch**.
 
 2. Um bloco script verifica se na nova menssagem, as keys "temperature" e "ph" estão definidos, pois se sim, uma chamada a API deve ocorrer.
-    ![](bloco_script.png)
+    ![](./bloco_script.png)
 
 3. Se ambas as chaves estiverem definidos, a resposta do bloco script será "true", e a mensagem será enviada ao bloco **rest api call**
 
 4. É realizada uma chamada http ao servidor da API, que retornará a predição do OD. Na imagem abaixo mostra todo o conteudo que modifiquei neste bloco. No teste que fiz eu criei um servidor flask e o expus com o ngrok. O servidor tinha uma rota GET no "/" e retornada um json no seguinte formato: {"oxygen":6}
-    ![](rest_call.png)
+    ![](./rest_call.png)
 
 5. Se a requisição for bem sucedida "200 ok", então a resposta do json é enviada ao bloco script azul, para ser tratada
 
 6. Neste bloco, ocorre a formatação de um novo envio de dados ao device que recebey os dados no passo 1. Este processo de identificar o device já é realizado pela própria thingsboard, não há com o que se preocupar. A única modificação é no campo "msg", que recebe o json com os dados a serem enviados ao device. Neste caso, a predição de OD oriunda da resposta da API.
-    ![](transformation.png)
+    ![](./transformation.png)
 
 7. Caso o thingsboard modifique os dados corretamente, a seta retorna sucesso e a nova mensagem modificada ao bloco seguinte
 
