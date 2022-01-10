@@ -60,17 +60,20 @@ Esta é a root rule chain padrão que vem instalado no thingsboard inicialmente.
 1. Chega uma nova mensagem de um device no server, que é encaminhado a seta 1, de **Post Telemetry**, através do **message type switch**.
 
 2. Um bloco script verifica se na nova menssagem, as keys "temperature" e "ph" estão definidos, pois se sim, uma chamada a API deve ocorrer.
-    ![](./bloco_script.png)
 
-3. Se ambas as chaves estiverem definidos, a resposta do bloco script será "true", e a mensagem será enviada ao bloco **rest api call**
+![](./bloco_script.png)
 
-4. É realizada uma chamada http ao servidor da API, que retornará a predição do OD. Na imagem abaixo mostra todo o conteudo que modifiquei neste bloco. No teste que fiz eu criei um servidor flask e o expus com o ngrok. O servidor tinha uma rota GET no "/" e retornada um json no seguinte formato: {"oxygen":6}
-    ![](./rest_call.png)
+3. Se ambas as chaves estiverem definidos, a resposta do bloco script será "true", e a mensagem será enviada ao bloco **rest api call**.
+
+4. É realizada uma chamada http ao servidor da API, que retornará a predição do OD. Na imagem abaixo mostra todo o conteudo que modifiquei neste bloco. No teste que fiz eu criei um servidor flask e o expus com o ngrok. O servidor tinha uma rota GET no "/" e retornada um json no seguinte formato: {"oxygen":6}.
+
+![](./rest_call.png)
 
 5. Se a requisição for bem sucedida "200 ok", então a resposta do json é enviada ao bloco script azul, para ser tratada
 
 6. Neste bloco, ocorre a formatação de um novo envio de dados ao device que recebey os dados no passo 1. Este processo de identificar o device já é realizado pela própria thingsboard, não há com o que se preocupar. A única modificação é no campo "msg", que recebe o json com os dados a serem enviados ao device. Neste caso, a predição de OD oriunda da resposta da API.
-    ![](./transformation.png)
+
+![](./transformation.png)
 
 7. Caso o thingsboard modifique os dados corretamente, a seta retorna sucesso e a nova mensagem modificada ao bloco seguinte
 
