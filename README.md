@@ -16,5 +16,6 @@
 - ## [Python](python/README.md)
 - ## [GNS3](gns3/README.md)
 - ## [SIM800L](sim800l/README.md)
+- ## [SdCard](sdcard/README.md)
 - ## [Solar Energy](solar-energy/README.md)
 - ## [Thingsboard](thingsboard/README.md)
