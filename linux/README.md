@@ -50,3 +50,23 @@ scp user@host:[/path/to/folder/file.name] [local-copy-of-folder]
 # enviar arquivo local para remoto via ssh, com scp:
 scp [local-copy-of-folder/file.name] user@host:[/path/to/folder/]
 ```
+
+#
+
+## Change TIMEZONE
+
+get datetime
+```
+timedatectl
+```
+
+listar timezones
+```
+timedatectl list-timezones
+```
+
+mudar timezone
+```
+timedatectl set-timezone <your_time_zone>
+```
+
