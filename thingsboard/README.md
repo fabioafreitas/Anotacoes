@@ -65,8 +65,15 @@ Esta é a root rule chain padrão que vem instalado no thingsboard inicialmente.
 
 1. Chega uma nova mensagem de um device no server, que é encaminhado a seta 1, de **Post Telemetry**, através do **message type switch**.
 
-2. Um bloco script verifica se na nova menssagem, as keys "temperature" e "ph" estão definidos, pois se sim, uma chamada a API deve ocorrer.
+2. Um bloco script verifica se na nova menssagem, as keys "temperature" e "ph" estão definidos, pois se sim, uma chamada a API deve ocorrer. O detalhe é que dentro do corpo do JSON desta requiição é necessário ter o device-id do dispositivo em questão, para que a API de estimação do OD possa identificá-lo. Este dado deve ser passado pelo próprio esp32/arduino/generator que gerou o dado de ph e temperatura, ou seja, o json deve estar no seguinte formado
 
+  ```
+  {
+  "ph":7.1,
+  "temperature":29.1,
+  "deviceid":"754bcc50-f9a3-11ec-bf91-e96cef9e8ef0"}
+  ```
+  
 ![](./bloco_script.png)
 
 3. Se ambas as chaves estiverem definidos, a resposta do bloco script será "true", e a mensagem será enviada ao bloco **rest api call**.
