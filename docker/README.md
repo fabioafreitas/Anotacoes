@@ -9,6 +9,12 @@ docker run -ti [--name nome] [container_name]
 * [--name nome]					da um nome ao container
 * [-v (dir_local):(dir_docker)]	monta um diretorio compartilhado com o host machine
 
+## EXEC
+
+exemplo: acessar o terminal (bash) de uma imagem ubuntu
+```
+docker exec -it [container_name]
+```
 
 ## Executar em Segundo Plano
 
