@@ -161,7 +161,7 @@ sudo make install
 5. Baixando e instalando o dynamips. Execute os comandos abaixo
 ```
 cd ~
-git clone git://github.com/GNS3/dynamips.git
+git clone https://github.com/GNS3/dynamips.git
 cd dynamips
 mkdir build
 cd build
