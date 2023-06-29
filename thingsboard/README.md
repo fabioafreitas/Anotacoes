@@ -107,7 +107,8 @@ Copy thingsboard.dump and tb.tar.gz to the new computer. On the new computer, wi
 
 Stop Thingsboard, then:
 ```
-sudo su postgres
+mv thingsboard.dump /var/lib/postgresql
+sudo su - postgres
 dropdb thingsboard # this removes the database
 createdb -T template0 thingsboard
 psql thingsboard -U postgres -W < thingsboard.dump
